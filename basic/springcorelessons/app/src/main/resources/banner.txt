@@ -1,0 +1,10 @@
+MyBanner
+
+This application should have only 1 instance, and it should not be used with non-blocking framework .
+
+
+
+
+
+
+
