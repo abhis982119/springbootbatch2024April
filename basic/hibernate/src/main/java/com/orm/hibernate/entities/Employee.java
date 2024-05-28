@@ -35,7 +35,7 @@ public class Employee {
     private int totalSalaryEarned;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id")
     private Company company;
 

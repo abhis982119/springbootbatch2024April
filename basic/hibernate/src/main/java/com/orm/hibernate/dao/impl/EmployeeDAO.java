@@ -30,7 +30,7 @@ public class EmployeeDAO implements IEmployeeDAO {
     }
 
     @Override
-    public List<Employee> getEmployee(List<Integer> employeeId){
+    public List<Employee> getEmployee(List<Integer> employeeId) {
 
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Employee> criteriaQuery = builder.createQuery(Employee.class);
@@ -38,28 +38,27 @@ public class EmployeeDAO implements IEmployeeDAO {
 
         criteriaQuery.select(employee);
 
-        return   getCurrentSession().createQuery(criteriaQuery).getResultList();
+        return getCurrentSession().createQuery(criteriaQuery).getResultList();
     }
 
     @Override
-    public Employee getEmployee(Integer employeeId){
+    public Employee getEmployee(Integer employeeId) {
 
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Employee> criteriaQuery = builder.createQuery(Employee.class);
         Root<Employee> employee = criteriaQuery.from(Employee.class);
 
-
         criteriaQuery.select(employee);
-        criteriaQuery.where(builder.equal(employee.get("employeeId"),employeeId));
+        criteriaQuery.where(builder.equal(employee.get("employeeId"), employeeId));
 
-       return entityManager.createQuery(criteriaQuery).getSingleResult();
+
+
+        return entityManager.createQuery(criteriaQuery).getSingleResult();
     }
 
     private Session getCurrentSession() {
         return entityManager.unwrap(Session.class);
     }
-
-
 
 
 }

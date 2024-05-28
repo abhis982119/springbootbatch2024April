@@ -13,12 +13,31 @@ public class EmployeeService {
     @Autowired
     private IEmployeeDAO employeeDAO;
 
+    @Autowired
+    private CacheService cacheService;
+
     public void save(Employee employee){
         employeeDAO.save(employee);
+        cacheService.save(String.valueOf(employee.getEmployeeId()), employee);
     }
 
 
     public Employee get(int employeeId){
-       return  employeeDAO.getEmployee(employeeId);
+        Employee employee = cacheService.getEmployee(String.valueOf(employeeId));
+        if(employee != null ){
+            System.out.println("Returning employee from cache");
+           return employee; // returned cached value
+        }
+
+        System.out.println("Employee not found in cache, so hitting database");
+        employee = employeeDAO.getEmployee(employeeId); // hit the database
+
+        if(employee != null ){
+            System.out.println("Employee found in database, updating in cache.");
+            cacheService.save(String.valueOf(employeeId), employee);
+        }
+
+        System.out.println("returning employee from database");
+        return employee;
     }
 }
