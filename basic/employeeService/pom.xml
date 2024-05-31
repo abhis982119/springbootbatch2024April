@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.orm</groupId>
-	<artifactId>hibernate</artifactId>
+	<artifactId>employeeService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hibernate</name>
+	<name>employeeService</name>
 	<description>Project will do curd operations</description>
 	<properties>
 		<java.version>17</java.version>
